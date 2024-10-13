@@ -1,28 +1,35 @@
-# Use an official Node runtime as a parent image
-FROM node:14-slim AS build
+# Stage 1: Build stage
+FROM node:16-alpine AS build
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
-
-# Copy the package.json and package-lock.json files to the container
-COPY package*.json ./
-
-# Install application dependencies
-RUN npm install
-
-# Copy the rest of the application code to the container
-COPY . .
-
-FROM alpine:3.16.7
-
+# Set working directory inside the container
 WORKDIR /app
 
-RUN apk update && apk add npm
+# Copy package.json and package-lock.json first to leverage Docker cache
+COPY package*.json ./
 
-COPY --from=build /usr/src/app /app
+# Install only production dependencies
+RUN npm install --only=production
 
-# Expose the port the app runs on
+# Install webpack and react-scripts separately (these can be dev dependencies)
+RUN npm install webpack@latest react-scripts@latest
+
+# Copy all application source code
+COPY . .
+
+# Uncomment this if you need to build a production-ready version of the app
+# RUN npm run build
+
+# Stage 2: Final stage (lighter image for running the app)
+FROM node:16-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy only the necessary built files from the previous stage
+COPY --from=build /app /app
+
+# Expose the application port
 EXPOSE 3000
 
-# Define the command to run your app
+# Start the application
 CMD ["npm", "start"]
