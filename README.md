@@ -5,7 +5,6 @@
 **Technologies Used*
 *Prerequisites*
 *Installation and Setup*
-*Environment Variables*
 *Docker and Containerization*
 *CI/CD Pipeline*
 *Usage*
@@ -14,6 +13,7 @@
 
 *Project Description*
 This project is a microservice-based web application that provides [specific functionality, e.g., a user authentication system, an e-commerce platform, etc.]. It is fully containerized using Docker and can be easily deployed in any environment supporting Docker. The project is designed with DevOps best practices in mind, utilizing Docker, Docker Compose, and CI/CD automation.
+![Alt text](screenshot_dockerhub.png)
 
 *Features*
 User authentication (login and registration)
