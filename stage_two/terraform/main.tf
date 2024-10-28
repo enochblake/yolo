@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("//home/blake/Downloads/genuine-segment-440011-t7-74bf4a4b0b70.json") # Replace with your service account key path
+  credentials = file("//home/blake/Downloads/velvety-setup-440011-d9-f93ad9a94ab8.json") # Replace with your service account key path
   project     = var.project_id
   region      = var.region
 }
