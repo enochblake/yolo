@@ -89,3 +89,6 @@ You can interact with the API using tools like Postman or cURL.
 
 *Contact Information*
 For any questions or feedback, please contact me at enoch.kibet@student.moringaschool.com
+
+*IP address*
+34.16.144.216
