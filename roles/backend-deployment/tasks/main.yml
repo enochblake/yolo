@@ -1,16 +1,12 @@
----
-- name: Pull image from repository
-  docker_image:
-    name: blakekibet/kibet-backend:v1.0.0
-    source: pull
-
 - name: Create Node.js Backend Container
   docker_container:
-    name: kibet-backend
-    image: blakekibet/kibet-backend:v1.0.0
+    name: kibet-yolo-backend
+    image: blakekibet/kibet-yolo-backend:v1.0.2
     networks:
       - name: app-net
     ports:
       - "5000:5000"
+    working_dir: /app  # Adjust this to your app's directory if needed
     command: "npm start"
+    restart_policy: unless-stopped
   become: yes

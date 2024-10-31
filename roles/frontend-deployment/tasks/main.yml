@@ -1,0 +1,16 @@
+- name: Pull image from repository
+  docker_image:
+    name: blakekibet/kibet-yolo2-client:v1.0.1
+    source: pull
+
+- name: Create Node.js frontend Container
+  docker_container:
+    name: kibet-yolo-client
+    image: blakekibet/kibet-yolo2-client:v1.0.1
+    networks:
+      - name: app-net
+    ports:
+      - "3000:3000"
+    command: "npm start"
+    restart_policy: unless-stopped
+  become: yes

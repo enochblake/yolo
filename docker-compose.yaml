@@ -11,24 +11,24 @@ version: "3.8"
 services:
 
   #Builds the frontend Docker image and creates the frontend microservice
-  kibet-client:
-    image: blakekibet/kibet-client:v1.0.0
+  kibet-yolo-client:
+    image: blakekibet/kibet-yolo-backend:v1.0.2
     build: ./client
-    container_name: kibet-client
+    container_name: kibet-yolo-client
     stdin_open: true
     tty: true
     ports:
       - "3000:3000"
     depends_on: 
-      - kibet-backend
+      - kibet-yolo-backend
     networks:
       - app-net
 
   #Builds the backend Docker image and creates the backend microservice
-  kibet-backend:
-    image: blakekibet/kibet-backend:v1.0.0
+  kibet-yolo-backend:
+    image: blakekibet/kibet-yolo-backend:v1.0.2
     build: ./backend
-    container_name: kibet-backend
+    container_name: kibet-yolo-backend
     stdin_open: true
     tty: true
     restart: always
